@@ -1,6 +1,8 @@
 BrowserQuest [updated & with Socket.IO]
 ============
 
+[![Node.js CI](https://github.com/nenuadrian/BrowserQuest/actions/workflows/node.js.yml/badge.svg)](https://github.com/nenuadrian/BrowserQuest/actions/workflows/node.js.yml)
+
 ![alt tag](https://raw.github.com/nenuadrian/BrowserQuest/master/screens/1.png)
 
 Changes
