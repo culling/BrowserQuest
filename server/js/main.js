@@ -6,11 +6,13 @@ var fs = require('fs'),
 function main(config) {
     var ws = require("./ws"),
         WorldServer = require("./worldserver"),
+        Player = require('./player'),
         Log = require('log'),
         _ = require('underscore'),
         server = new ws.socketIOServer(config.host, config.port),
-        metrics = config.metrics_enabled ? new Metrics(config) : null;
+        metrics = config.metrics_enabled ? new Metrics(config) : null,
         worlds = [],
+        log,
         lastTotalPlayers = 0,
         checkPopulationInterval = setInterval(function() {
             if(metrics && metrics.isReady) {
@@ -25,14 +27,14 @@ function main(config) {
             }
         }, 1000);
     
-    switch(config.debug_level) {
-        case "error":
-            log = new Log(Log.ERROR); break;
-        case "debug":
-            log = new Log(Log.DEBUG); break;
-        case "info":
-            log = new Log(Log.INFO); break;
+    // Set up simple logging for compatibility - make it global for other modules
+    global.log = {
+        info: function(msg) { Log('[INFO] ' + msg); },
+        debug: function(msg) { if (config.debug_level === 'debug') Log('[DEBUG] ' + msg); },
+        error: function(msg) { Log('[ERROR] ' + msg); }
     };
+    
+    log = global.log;
     
     log.info("Starting BrowserQuest game server...");
     
