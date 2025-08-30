@@ -6,12 +6,16 @@
       "Bash(npm test)",
       "Bash(curl:*)",
       "Bash(npm test:*)",
-      "Bash(dir /b C:UserscullicodeBrowserQuestserver*config*)",
+      "Bash(dir /b C:\\Users\\culli\\code\\BrowserQuest\\sever\\*config*)",
       "Bash(npm install:*)",
       "Bash(npx playwright:*)",
       "Bash(del tmxmap.tmx.json)",
-      "Bash(dir /b C:UserscullicodeBrowserQuesttoolsmaps)",
-      "Bash(npm run map:export:*)"
+      "Bash(dir /b C:\\Users\\culli\\code\\BrowserQuest\\tools\\maps)",
+      "Bash(npm run map:export:*)",
+      "Bash(dir C:\\Users\\culli\\code\\BrowserQuest\\tools\\maps)",
+      "Bash(grep:*)",
+      "Bash(npm run stop:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []
