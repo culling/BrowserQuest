@@ -16,7 +16,6 @@ Set-Location $CURDIR
 
 Write-Host "Removing unnecessary js files from the build directory"
 $filesToRemove = @(
-    "mapworker.js"
 )
 
 $jsDir = Join-Path $BUILDDIR "js"
