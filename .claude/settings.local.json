@@ -8,7 +8,10 @@
       "Bash(npm test:*)",
       "Bash(dir /b C:UserscullicodeBrowserQuestserver*config*)",
       "Bash(npm install:*)",
-      "Bash(npx playwright:*)"
+      "Bash(npx playwright:*)",
+      "Bash(del tmxmap.tmx.json)",
+      "Bash(dir /b C:UserscullicodeBrowserQuesttoolsmaps)",
+      "Bash(npm run map:export:*)"
     ],
     "deny": [],
     "ask": []

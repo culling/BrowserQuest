@@ -234,13 +234,7 @@ Checkpoints are defined in `server/maps/world_server.json` with the following pr
 
 ### Starting Areas (s: 1)
 
-**Checkpoint 1**: (14, 210) - 9×2 area  
-**Checkpoint 2**: (40, 208) - 6×5 area  
-**Checkpoint 3**: (40, 221) - 5×4 area  
-**Checkpoint 4**: (13, 223) - 4×3 area  
-**Checkpoint 5**: (68, 220) - 5×5 area  
-**Checkpoint 6**: (40, 232) - 5×5 area  
-**Checkpoint 7**: (14, 233) - 4×3 area  
+**Checkpoint 1**: (150, 138) - 8×6 area  - Programmers room
 
 ### Regular Checkpoints (s: 0)
 

@@ -19,6 +19,10 @@ npm run stop                   # Stop both servers
 
 ### Building the Client
 ```bash
+# Cross-platform (recommended)
+npm run build                 # Creates optimized client-build/ directory
+
+# Manual builds
 # Linux/Mac
 cd bin
 chmod +x build.sh
@@ -26,6 +30,23 @@ chmod +x build.sh
 
 # Windows PowerShell
 .\bin\build.ps1               # Creates optimized client-build/ directory
+```
+
+### Exporting Maps
+```bash
+# Export both client and server maps (recommended)
+npm run map:export
+
+# Export specific maps only
+npm run map:export-client     # Client map only
+npm run map:export-server     # Server map only
+
+# Direct script usage
+cd tools/maps
+node export-map.js            # Both maps
+node export-map.js --skip-server    # Client only  
+node export-map.js --skip-client    # Server only
+export-map.bat                # Windows batch file
 ```
 
 ### Running Both Servers
@@ -92,3 +113,4 @@ The build process uses RequireJS optimizer to create a production-ready client b
 - Server supports multiple game worlds with configurable player limits
 - Client supports mobile/tablet detection and touch controls
 - Use `npm run stop` to stop both servers, or manually: `Get-NetTCPConnection -LocalPort 8000,3000 | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }`
+- Always remember this is a windows computer and try powershell commands first

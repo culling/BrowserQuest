@@ -1,11 +1,14 @@
 #!/usr/bin/env node
 
 var util = require('util'),
-    Log = require('log'),
     path = require("path"),
     fs = require("fs"),
     processMap = require('./processmap'),
-    log = new Log(Log.DEBUG);
+    log = { 
+        info: function(msg) { console.log('INFO:', msg); },
+        debug: function(msg) { console.log('DEBUG:', msg); },
+        error: function(msg) { console.error('ERROR:', msg); }
+    };
     
 var source = process.argv[2],
     destination = process.argv[3],
@@ -36,7 +39,9 @@ function main() {
                 log.info("Finished processing map file: "+ destination + ".js was saved.");
             });
         } else {
-            fs.writeFile(destination, jsonMap, function(err, file) {
+            // Pretty print server JSON for better readability
+            var prettyJsonMap = JSON.stringify(map, null, 2);
+            fs.writeFile(destination, prettyJsonMap, function(err, file) {
                 log.info("Finished processing map file: "+ destination + " was saved.");
             });
         }
@@ -47,13 +52,17 @@ function main() {
 function getTiledJSONmap(filename, callback) {
     var self = this;
     
-    path.exists(filename, function(exists) {
-        if(!exists) {  
+    fs.access(filename, fs.constants.F_OK, function(err) {
+        if(err) {  
             log.error(filename + " doesn't exist.")
             return;
         }
     
         fs.readFile(source, function(err, file) {
+            if(err) {
+                log.error("Error reading file: " + err.message);
+                return;
+            }
             callback(JSON.parse(file.toString()));
         });
     });

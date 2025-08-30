@@ -5,11 +5,11 @@
     "dependencies": {
         "bison": ">0",
         "express": ">0",
-        "log": ">0",
+        "log": "^6.3.2",
         "memcache": "0.3.0",
         "sanitizer": "0.1.2",
         "socket.io": ">0",
-        "underscore": ">0"
+        "underscore": "^1.13.7"
     },
     "devDependencies": {
         "@playwright/test": "^1.55.0",
@@ -20,7 +20,7 @@
         "test:headed": "playwright test --headed",
         "test:debug": "playwright test --debug",
         "test:console": "playwright test tests/console-errors.spec.js",
-        "test:game": "playwright test tests/game-functionality.spec.js", 
+        "test:game": "playwright test tests/game-functionality.spec.js",
         "test:server": "playwright test tests/server-integration.spec.js",
         "test:report": "playwright show-report",
         "test:ci": "playwright test --reporter=json",
@@ -31,6 +31,9 @@
         "stop": "powershell -Command \"Get-NetTCPConnection -LocalPort 8000,3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | Sort-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force }\"",
         "dev": "npm run start-both",
         "build": "cd bin && powershell -ExecutionPolicy Bypass -File build.ps1",
+        "map:export": "cd tools/maps && node export-map.js",
+        "map:export-client": "cd tools/maps && node export-map.js --skip-server",
+        "map:export-server": "cd tools/maps && node export-map.js --skip-client",
         "health-check": "node -e \"console.log('BrowserQuest health check OK')\""
     }
 }
