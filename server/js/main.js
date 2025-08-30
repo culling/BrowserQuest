@@ -38,6 +38,17 @@ function main(config) {
     
     log.info("Starting BrowserQuest game server...");
     
+    // Log connection stats every 10 seconds
+    setInterval(function() {
+        var totalPlayers = 0;
+        _.each(worlds, function(world) {
+            totalPlayers += world.playerCount;
+        });
+        if (totalPlayers > 0) {
+            log.info("Active players: " + totalPlayers + " across " + worlds.length + " worlds");
+        }
+    }, 10000);
+    
     server.onConnect(function(connection) {
         var world, // the one in which the player will be spawned
             connect = function() {
