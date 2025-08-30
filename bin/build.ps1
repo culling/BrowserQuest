@@ -16,9 +16,7 @@ Set-Location $CURDIR
 
 Write-Host "Removing unnecessary js files from the build directory"
 $filesToRemove = @(
-    "game.js", "home.js", "log.js", "require-jquery.js", 
-    "modernizr.js", "css3-mediaqueries.js", "mapworker.js", 
-    "detect.js", "underscore.min.js", "text.js"
+    "mapworker.js"
 )
 
 $jsDir = Join-Path $BUILDDIR "js"
@@ -28,16 +26,24 @@ if (Test-Path $jsDir) {
     } | Remove-Item -Force
 }
 
-Write-Host "Removing sprites directory"
-$spritesDir = Join-Path $BUILDDIR "sprites"
-if (Test-Path $spritesDir) {
-    Remove-Item -Recurse -Force $spritesDir
+Write-Host "Copying required shared files"
+$sharedSourceDir = "..\shared"
+$sharedBuildDir = Join-Path $BUILDDIR "shared"
+if (Test-Path $sharedSourceDir) {
+    Copy-Item -Path $sharedSourceDir -Destination $sharedBuildDir -Recurse -Force
 }
 
-Write-Host "Removing config directory"
-$configDir = Join-Path $BUILDDIR "config"
-if (Test-Path $configDir) {
-    Remove-Item -Recurse -Force $configDir
+Write-Host "Copying config files"
+$configSourceDir = "..\client\config"
+$configBuildDir = Join-Path $BUILDDIR "config"
+if (Test-Path $configSourceDir) {
+    Copy-Item -Path $configSourceDir -Destination $configBuildDir -Recurse -Force
+    # Copy template config as the main config if it doesn't exist
+    $configBuildJsonPath = Join-Path $configBuildDir "config_build.json"
+    $configTemplatePath = Join-Path $configBuildDir "config_build.json-dist"
+    if (-not (Test-Path $configBuildJsonPath) -and (Test-Path $configTemplatePath)) {
+        Copy-Item -Path $configTemplatePath -Destination $configBuildJsonPath -Force
+    }
 }
 
 Write-Host "Moving build.txt to current dir"

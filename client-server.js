@@ -7,8 +7,8 @@ const PORT = 3000;
 // Serve static files from client-build directory
 app.use(express.static(path.join(__dirname, 'client-build')));
 
-// Handle all routes by serving index.html (for single page application)
-app.get('*', (req, res) => {
+// Only serve index.html for non-file requests (no extension)
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client-build', 'index.html'));
 });
 
