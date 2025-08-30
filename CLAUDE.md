@@ -11,8 +11,10 @@ BrowserQuest is an HTML5/JavaScript multiplayer game experiment that has been up
 ### Development
 ```bash
 npm install                    # Install dependencies
-node server/js/main.js        # Start the game server
-node client-server.js         # Start the client web server
+npm run dev                    # Start both servers concurrently
+npm run start-server           # Start game server only (port 8000)
+npm run start-client           # Start client web server only (port 3000)
+npm run stop                   # Stop both servers
 ```
 
 ### Building the Client
@@ -28,11 +30,14 @@ chmod +x build.sh
 
 ### Running Both Servers
 ```bash
-# Windows batch
-start-servers.bat
+# Recommended (cross-platform)
+npm run dev                   # Start both servers concurrently
+npm run stop                  # Stop both servers
 
-# Windows PowerShell  
-.\start-servers.ps1
+# Alternative methods
+npm run start-both            # Same as npm run dev
+start-servers.bat             # Windows batch (legacy)
+.\start-servers.ps1           # Windows PowerShell (legacy)
 
 # Manual (any OS)
 node server/js/main.js &      # Game server on port 8000
@@ -86,4 +91,4 @@ The build process uses RequireJS optimizer to create a production-ready client b
 - Socket.IO replaces the original WebSocket implementation
 - Server supports multiple game worlds with configurable player limits
 - Client supports mobile/tablet detection and touch controls
-- to stop the servers use "Get-NetTCPConnection -LocalPort 8000 | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }"
+- Use `npm run stop` to stop both servers, or manually: `Get-NetTCPConnection -LocalPort 8000,3000 | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }`

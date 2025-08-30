@@ -12,7 +12,8 @@
         "underscore": ">0"
     },
     "devDependencies": {
-        "@playwright/test": "^1.55.0"
+        "@playwright/test": "^1.55.0",
+        "concurrently": "^8.2.2"
     },
     "scripts": {
         "test": "playwright test",
@@ -26,7 +27,9 @@
         "start": "node server/js/main.js",
         "start-client": "node client-server.js",
         "start-server": "node server/js/main.js",
-        "dev": "echo 'Start both servers manually: npm run start-server and npm run start-client'",
+        "start-both": "concurrently \"npm run start-server\" \"npm run start-client\"",
+        "stop": "powershell -Command \"Get-NetTCPConnection -LocalPort 8000,3000 -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess | Sort-Object -Unique | ForEach-Object { Stop-Process -Id $_ -Force }\"",
+        "dev": "npm run start-both",
         "build": "cd bin && powershell -ExecutionPolicy Bypass -File build.ps1",
         "health-check": "node -e \"console.log('BrowserQuest health check OK')\""
     }
