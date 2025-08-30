@@ -11,4 +11,14 @@
     , "sanitizer": "0.1.2"
     , "memcache": "0.3.0"
   }
+  , "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+  , "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "start-client": "node client-server.js",
+    "start-server": "node server/js/main.js"
+  }
 }

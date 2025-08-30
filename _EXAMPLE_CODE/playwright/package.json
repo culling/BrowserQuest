@@ -1,0 +1,30 @@
+{
+  "name": "tagsandheirachywithrules-module",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug"
+  },
+  "keywords": [
+    "tags",
+    "hierarchy",
+    "comfyui",
+    "template",
+    "editor"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "Tags and Hierarchy Editor with ComfyUI integration",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.0"
+  }
+}

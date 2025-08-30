@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(node:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(npm test)",
+      "Bash(curl:*)",
+      "Bash(npm test:*)",
+      "Bash(dir /b C:UserscullicodeBrowserQuestserver*config*)"
     ],
     "deny": [],
     "ask": []

@@ -29,9 +29,9 @@ function main(config) {
     
     // Set up simple logging for compatibility - make it global for other modules
     global.log = {
-        info: function(msg) { Log('[INFO] ' + msg); },
-        debug: function(msg) { if (config.debug_level === 'debug') Log('[DEBUG] ' + msg); },
-        error: function(msg) { Log('[ERROR] ' + msg); }
+        info: function(msg) { console.log('[INFO] ' + msg); },
+        debug: function(msg) { if (config.debug_level === 'debug') console.log('[DEBUG] ' + msg); },
+        error: function(msg) { console.error('[ERROR] ' + msg); }
     };
     
     log = global.log;

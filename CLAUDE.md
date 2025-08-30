@@ -86,3 +86,4 @@ The build process uses RequireJS optimizer to create a production-ready client b
 - Socket.IO replaces the original WebSocket implementation
 - Server supports multiple game worlds with configurable player limits
 - Client supports mobile/tablet detection and touch controls
+- to stop the servers use "Get-NetTCPConnection -LocalPort 8000 | Select-Object -ExpandProperty OwningProcess | ForEach-Object { Stop-Process -Id $_ -Force }"
