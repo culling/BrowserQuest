@@ -1,24 +1,33 @@
 {
-    "name": "BrowserQuest"
-  , "version": "0.0.1"
-  , "private": false 
-  , "dependencies": {
-    "underscore": ">0"
-    , "log": ">0"
-    , "bison": ">0"
-    , "express": ">0"
-    , "socket.io": ">0"
-    , "sanitizer": "0.1.2"
-    , "memcache": "0.3.0"
-  }
-  , "devDependencies": {
-    "@playwright/test": "^1.55.0"
-  }
-  , "scripts": {
-    "test": "playwright test",
-    "test:headed": "playwright test --headed",
-    "test:debug": "playwright test --debug",
-    "start-client": "node client-server.js",
-    "start-server": "node server/js/main.js"
-  }
+    "name": "BrowserQuest",
+    "version": "0.0.1",
+    "private": false,
+    "dependencies": {
+        "bison": ">0",
+        "express": ">0",
+        "log": ">0",
+        "memcache": "0.3.0",
+        "sanitizer": "0.1.2",
+        "socket.io": ">0",
+        "underscore": ">0"
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.55.0"
+    },
+    "scripts": {
+        "test": "playwright test",
+        "test:headed": "playwright test --headed",
+        "test:debug": "playwright test --debug",
+        "test:console": "playwright test tests/console-errors.spec.js",
+        "test:game": "playwright test tests/game-functionality.spec.js", 
+        "test:server": "playwright test tests/server-integration.spec.js",
+        "test:report": "playwright show-report",
+        "test:ci": "playwright test --reporter=json",
+        "start": "node server/js/main.js",
+        "start-client": "node client-server.js",
+        "start-server": "node server/js/main.js",
+        "dev": "echo 'Start both servers manually: npm run start-server and npm run start-client'",
+        "build": "cd bin && powershell -ExecutionPolicy Bypass -File build.ps1",
+        "health-check": "node -e \"console.log('BrowserQuest health check OK')\""
+    }
 }

@@ -6,7 +6,9 @@
       "Bash(npm test)",
       "Bash(curl:*)",
       "Bash(npm test:*)",
-      "Bash(dir /b C:UserscullicodeBrowserQuestserver*config*)"
+      "Bash(dir /b C:UserscullicodeBrowserQuestserver*config*)",
+      "Bash(npm install:*)",
+      "Bash(npx playwright:*)"
     ],
     "deny": [],
     "ask": []

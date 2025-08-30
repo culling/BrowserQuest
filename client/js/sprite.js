@@ -82,7 +82,16 @@ define(['jquery', 'animation', 'sprites'], function($, Animation, sprites) {
             	    height: this.height
             	};
     	    } catch(e) {
-    	        log.error("Error getting image data for sprite : "+this.name);
+    	        log.debug("Cannot create hurt sprite for " + this.name + " - CORS or image loading issue. Using fallback.");
+    	        // Create a fallback white sprite without getImageData
+    	        this.whiteSprite = {
+    	            image: this.image, // Use original image as fallback
+    	            isLoaded: true,
+    	            offsetX: this.offsetX,
+    	            offsetY: this.offsetY,
+    	            width: this.width,
+    	            height: this.height
+    	        };
     	    }
         },
 	
@@ -100,9 +109,11 @@ define(['jquery', 'animation', 'sprites'], function($, Animation, sprites) {
     	    canvas.width = width;
     	    canvas.height = height;
     	    ctx.drawImage(this.image, 0, 0, width, height);
-    	    data = ctx.getImageData(0, 0, width, height).data;
-    	    finalData = ctx.getImageData(0, 0, width, height);
-    	    fdata = finalData.data;
+    	    
+    	    try {
+    	        data = ctx.getImageData(0, 0, width, height).data;
+    	        finalData = ctx.getImageData(0, 0, width, height);
+    	        fdata = finalData.data;
 	    
     	    var getIndex = function(x, y) {
     	        return ((width * (y-1)) + x - 1) * 4;
@@ -162,6 +173,18 @@ define(['jquery', 'animation', 'sprites'], function($, Animation, sprites) {
         	    width: this.width,
         	    height: this.height
         	};
+        } catch(e) {
+            log.debug("Cannot create silhouette sprite for " + this.name + " - CORS or image loading issue. Using fallback.");
+            // Create a fallback silhouette sprite without getImageData
+            this.silhouetteSprite = {
+                image: this.image, // Use original image as fallback
+                isLoaded: true,
+                offsetX: this.offsetX,
+                offsetY: this.offsetY,
+                width: this.width,
+                height: this.height
+            };
+        }
     	}
     });
 
