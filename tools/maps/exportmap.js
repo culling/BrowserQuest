@@ -25,7 +25,7 @@ function main() {
         var options = { mode: mode || "server" },
             map = processMap(json, options);
         
-        var jsonMap = JSON.stringify(map); // Save the processed map object as JSON data
+        var jsonMap = JSON.stringify(map, null, 2); // Save the processed map object as pretty-printed JSON data
         
         if(mode === "client") {
             // map in a .json file for ajax loading
@@ -34,7 +34,7 @@ function main() {
             });
             
             // map in a .js file for web worker loading
-            jsonMap = "var mapData = "+JSON.stringify(map);
+            jsonMap = "var mapData = "+JSON.stringify(map, null, 2);
             fs.writeFile(destination+".js", jsonMap, function(err, file) {
                 log.info("Finished processing map file: "+ destination + ".js was saved.");
             });
